@@ -261,6 +261,58 @@ input:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
+.import-note {
+  background: #ffffff;
+  border-left: 5px solid #4a90e2;
+  padding: 12px 14px;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.import-note code {
+  display: block;
+  background: #f0f0f0;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 6px 0;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+.import-note ul {
+  padding-left: 18px;
+  margin: 6px 0;
+}
+
+.import-note li {
+  margin-bottom: 4px;
+}
+/* ===== Primary buttons ===== */
+button.primary {
+  background: #4a90e2;        /* xanh dịu – hành động chính */
+  color: white;
+  border: none;
+}
+
+button.primary:active {
+  transform: scale(0.96);
+}
+
+button.primary:hover {
+  background: #357abd;
+}
+
+/* Nút học – xanh lá tạo cảm giác tích cực */
+button.learn {
+  background: #2ecc71;        /* xanh lá thân thiện */
+  color: white;
+  border: none;
+}
+
+button.learn:hover {
+  background: #27ae60;
+}
 
 </style>
 </head>
@@ -285,17 +337,42 @@ input:focus {
   <input id="newFolder" placeholder="Hoặc tạo thư mục mới">
 
   <div class="action-row">
-  <button onclick="addWord()">Thêm</button>
+  <button onclick="addWord()" class="primary">➕ Thêm</button>
   <div id="successMsg">✅ Thêm từ thành công</div>
 
     <button onclick="clearAllMarks()" class="danger">
     ❌ Xóa toàn bộ đánh dấu từ
     </button>
+
+    <button onclick="clearAllWords()" class="danger">
+    🗑️ Xóa toàn bộ từ vựng
+  </button>
   </div>
 
 
 
   <h3>Import từ file text</h3>
+  <div class="import-note">
+  <strong>📄 Định dạng file text:</strong><br>
+  Mỗi dòng là <b>1 từ vựng</b>, các phần được phân tách bằng dấu <b>:</b><br><br>
+
+  <code>Từ : Phân loại : Mẫu câu : Link hình</code><br><br>
+
+  <strong>Quy tắc:</strong>
+  <ul>
+    <li>Phân loại và Mẫu câu <b>không bắt buộc</b></li>
+    <li>Nếu bỏ trống, vẫn phải giữ dấu <b>:</b></li>
+    <li>Không có phân loại → tự động vào <b>Chưa phân loại</b></li>
+  </ul>
+
+  <strong>Ví dụ:</strong><br>
+  <code>
+    Apple::I eat an apple:https://example.com/apple.png<br>
+    Dog:Animals:The dog is running:https://example.com/dog.jpg<br>
+    Cat:::https://example.com/cat.png
+  </code>
+</div>
+
   <input type="file" accept=".txt" onchange="importFile(this)">
 </section>
 
@@ -314,7 +391,7 @@ input:focus {
 </label>
 
 
-<button onclick="render()">Bắt đầu học</button>
+<button onclick="render()" class="learn">▶️ Bắt đầu học</button>
 
   <div class="cards" id="cards"></div>
 </section>
@@ -503,6 +580,17 @@ function save(){
   localStorage.setItem("vocab",JSON.stringify(data));
   loadFolders();
 }
+function clearAllWords() {
+  if (!confirm("⚠️ Xóa TOÀN BỘ từ vựng?")) return;
+  if (!confirm("❗ Bạn chắc chắn 100%? Dữ liệu sẽ mất vĩnh viễn.")) return;
+
+  data = [];
+  save();
+  cards.innerHTML = "";
+
+  alert("✅ Đã xóa toàn bộ từ vựng");
+}
+
 
 loadFolders();
 </script>
