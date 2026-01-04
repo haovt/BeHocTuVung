@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Học Từ Vựng Cho Bé</title>
+
+<style>
+/* ===== Base ===== */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f5f5f5;
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  background: #4a90e2;
+}
+textarea {
+  resize: vertical;
+}
+input,
+textarea,
+select,
+button {
+  box-sizing: border-box;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 16px;
+  font-size: 18px;
+  border: none;
+  color: white;
+  background: none;
+}
+
+.tabs button.active {
+  background: #357abd;
+}
+
+section {
+  display: none;
+  padding: 16px;
+}
+
+section.active {
+  display: block;
+}
+
+/* ===== Form ===== */
+input, textarea, select {
+  width: 100%;
+  padding: 14px;
+  margin: 6px 0;
+  font-size: 18px;
+}
+
+button {
+  padding: 14px;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+#successMsg {
+  display: none;
+  color: green;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+/* ===== Cards Grid ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+/* ===== Card Core ===== */
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;        /* 🔒 Khóa kích thước */
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ===== Card Faces ===== */
+.card-face {
+  position: absolute;
+  inset: 0;                  /* 🔒 Không cho giãn */
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;          /* 🔒 Chặn phình */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+/* ===== Front ===== */
+.card-front {
+  background: #ffffff;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;       /* 🔑 Không làm phình */
+  border-radius: 16px;       /* ✅ Bo góc mềm mại */
+}
+
+/* ===== Back ===== */
+.card-back {
+  transform: rotateY(180deg);
+  text-align: center;
+  color: #222;
+  overflow-y: auto;
+}
+
+.word {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.example {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+/* ===== Highlight ===== */
+mark {
+  background: #ffeb3b;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* ===== Tablet-friendly Star ===== */
+.star {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.star:active {
+  transform: scale(0.9);
+}
+
+.star.marked {
+  background: #ffd700;
+}
+
+/* ===== Custom Radio – FIX trạng thái được chọn ===== */
+label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+/* Ẩn radio mặc định */
+label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #4a90e2;
+  background: white;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* khi được chọn – vẽ chấm tròn */
+label input[type="radio"]:checked::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: #4a90e2;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* hiệu ứng tap cho tablet */
+label input[type="radio"]:active,
+label:active input[type="radio"] {
+  transform: scale(0.9);
+}
+
+/* ===== Action buttons row ===== */
+.action-row {
+  display: flex;
+  justify-content: space-between; /* 🔑 tách 2 đầu */
+  align-items: center;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+/* nút nguy hiểm */
+button.danger {
+  background: #e74c3c;
+  color: white;
+}
+/* ===== Button style ===== */
+button {
+  border-radius: 10px;      /* bo góc mềm, thân thiện trẻ em */
+  padding: 10px 16px;
+}
+
+/* ===== Dropdown / Select ===== */
+select {
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+/* Optional: input text nếu có */
+input[type="text"],
+input[type="number"] {
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+/* Hover & focus nhẹ */
+button:hover {
+  opacity: 0.95;
+}
+
+button:focus,
+select:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== Tabs ===== -->
+<div class="tabs">
+  <button class="active" onclick="showTab(0)">➕ Nhập từ</button>
+  <button onclick="showTab(1)">🎴 Học từ</button>
+</div>
+
+<!-- ===== Add Word ===== -->
+<section class="active">
+  <h2>Thêm từ mới</h2>
+
+  <input id="word" placeholder="Từ vựng">
+  <textarea id="example" placeholder="Mẫu câu (không bắt buộc)"></textarea>
+  <input id="image" placeholder="Link hình ảnh">
+
+  <select id="folderSelect"></select>
+  <input id="newFolder" placeholder="Hoặc tạo thư mục mới">
+
+  <div class="action-row">
+  <button onclick="addWord()">Thêm</button>
+  <div id="successMsg">✅ Thêm từ thành công</div>
+
+    <button onclick="clearAllMarks()" class="danger">
+    ❌ Xóa toàn bộ đánh dấu từ
+    </button>
+  </div>
+
+
+
+  <h3>Import từ file text</h3>
+  <input type="file" accept=".txt" onchange="importFile(this)">
+</section>
+
+<!-- ===== Learn ===== -->
+<section>
+  <h2>Học từ</h2>
+  <select id="folderFilter"></select>
+<label>
+  <input type="radio" name="markedMode" id="onlyMarked">
+  Chỉ học từ đã đánh dấu
+</label>
+
+<label>
+  <input type="radio" name="markedMode" id="includeMarked">
+  Bao gồm từ đã đánh dấu
+</label>
+
+
+<button onclick="render()">Bắt đầu học</button>
+
+  <div class="cards" id="cards"></div>
+</section>
+
+<script>
+/* ===== Data ===== */
+const COLORS = ["#FFB6C1","#FFD966","#A8DADC","#B5EAD7","#CDB4DB","#FFDAC1"];
+const DEFAULT_FOLDER = "Chưa phân loại";
+
+let data = JSON.parse(localStorage.getItem("vocab") || "[]");
+
+const folderSelect = document.getElementById("folderSelect");
+const folderFilter = document.getElementById("folderFilter");
+const includeMarkedRadio = document.getElementById("includeMarked");
+const onlyMarkedRadio = document.getElementById("onlyMarked");
+
+/* ===== Tabs ===== */
+function showTab(i){
+  document.querySelectorAll("section").forEach((s,idx)=>s.classList.toggle("active",idx===i));
+  document.querySelectorAll(".tabs button").forEach((b,idx)=>b.classList.toggle("active",idx===i));
+  loadFolders();
+}
+
+/* ===== Form ===== */
+function clearForm(){
+  word.value = "";
+  example.value = "";
+  image.value = "";
+  newFolder.value = "";
+  folderSelect.value = "";
+}
+
+function showSuccess(){
+  successMsg.style.display = "block";
+  setTimeout(()=>successMsg.style.display="none",2000);
+}
+
+/* ===== Add Word ===== */
+function addWord(obj){
+  const wordVal = obj?.word || word.value.trim();
+  const exampleVal = obj?.example || example.value.trim();
+  const imageVal = obj?.image || image.value.trim();
+  const folder =
+    obj?.folder ||
+    newFolder.value.trim() ||
+    folderSelect.value ||
+    DEFAULT_FOLDER;
+
+  if(!wordVal || !imageVal) return;
+
+  data.push({
+    word: wordVal,
+    example: exampleVal,
+    image: imageVal,
+    folder,
+    color: COLORS[Math.floor(Math.random()*COLORS.length)],
+    marked: false
+  });
+
+  save();
+  clearForm();
+  showSuccess();
+}
+
+/* ===== Import ===== */
+function importFile(input){
+  const reader = new FileReader();
+  reader.onload = () => {
+    reader.result.split("\n").forEach(line=>{
+      if(!line.trim()) return;
+      const p = line.split(":");
+      addWord({
+        word: p[0]?.trim(),
+        folder: p[1]?.trim(),
+        example: p[2]?.trim(),
+        image: p[3]?.trim()
+      });
+    });
+  };
+  reader.readAsText(input.files[0]);
+}
+
+/* ===== Folder ===== */
+function loadFolders(){
+  const folders = [...new Set(data.map(x=>x.folder || DEFAULT_FOLDER))].sort();
+  folderSelect.innerHTML = `<option value="">${DEFAULT_FOLDER}</option>`;
+  folderFilter.innerHTML = `<option value="">-- Tất cả --</option>`;
+  folders.forEach(f=>{
+    folderSelect.innerHTML += `<option>${f}</option>`;
+    folderFilter.innerHTML += `<option>${f}</option>`;
+  });
+}
+
+/* ===== Highlight ===== */
+function highlight(sentence, word){
+  if(!sentence) return "";
+  return sentence.replace(new RegExp(`(${word})`, "gi"), "<mark>$1</mark>");
+}
+
+/* ===== Render ===== */
+function render(){
+  cards.innerHTML = "";
+
+  data.filter(x => {
+  // 1️⃣ Ưu tiên: chỉ học từ đã đánh dấu
+  if (onlyMarkedRadio.checked) {
+    return x.marked;
+  }
+
+  // 2️⃣ Có chọn thư mục
+  if (folderFilter.value) {
+    // thuộc thư mục đang học
+    if (x.folder === folderFilter.value) return true;
+
+    // hoặc là từ đã đánh dấu & cho phép bao gồm
+    if (includeMarkedRadio.checked && x.marked) return true;
+
+    return false;
+  }
+
+  // 3️⃣ Không chọn gì → hiện tất cả
+  return true;
+}).forEach(item=>{
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <img src="${item.image}">
+        </div>
+        <div class="card-face card-back" style="background:${item.color}">
+          <div class="star ${item.marked ? "marked" : ""}">${item.marked ? "⭐" : "☆"}</div>
+          <div class="word">${item.word}</div>
+          <div class="example">${highlight(item.example,item.word)}</div>
+        </div>
+      </div>
+    `;
+
+    const inner = card.querySelector(".card-inner");
+    const star = card.querySelector(".star");
+
+    inner.addEventListener("pointerup", e=>{
+      if(e.target.closest(".star")) return;
+      card.classList.toggle("flipped");
+    });
+
+    star.addEventListener("pointerup", e=>{
+      e.stopPropagation();
+      item.marked = !item.marked;
+      save();
+      render();
+    });
+
+    cards.appendChild(card);
+  });
+}
+
+function clearAllMarks() {
+  const confirmed = confirm(
+    "⚠️ Bạn có chắc chắn muốn xóa TẤT CẢ các từ đã đánh dấu?\nHành động này không thể hoàn tác."
+  );
+
+  if (!confirmed) return;
+
+  let changed = false;
+
+  data.forEach(item => {
+    if (item.marked) {
+      item.marked = false;
+      changed = true;
+    }
+  });
+
+  if (changed) {
+    save();
+    alert("✅ Đã xóa toàn bộ đánh dấu từ");
+  } else {
+    alert("ℹ️ Không có từ nào đang được đánh dấu");
+  }
+}
+
+
+/* ===== Save ===== */
+function save(){
+  localStorage.setItem("vocab",JSON.stringify(data));
+  loadFolders();
+}
+
+loadFolders();
+</script>
+
+</body>
+</html>
