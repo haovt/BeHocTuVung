@@ -1,599 +1,426 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>English Vocabulary for Kids</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Học Từ Vựng Cho Bé</title>
 
 <style>
-/* ===== Base ===== */
-body {
+  body {
+  font-family: "Comic Sans MS", system-ui, sans-serif;
   margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #f5f5f5;
+  background: #fff0f6;
+  font-size: 20px; /* chữ cơ bản to hơn */
 }
 
-/* ===== Tabs ===== */
+/* Tabs */
 .tabs {
   display: flex;
-  background: #4a90e2;
-}
-textarea {
-  resize: vertical;
-}
-input,
-textarea,
-select,
-button {
-  box-sizing: border-box;
+  background: #ff9ac4;
 }
 
 .tabs button {
   flex: 1;
-  padding: 16px;
-  font-size: 18px;
+  padding: 20px;
+  font-size: 24px; /* chữ tiêu đề tab to */
   border: none;
-  color: white;
   background: none;
-}
-
-.tabs button.active {
-  background: #357abd;
-}
-
-section {
-  display: none;
-  padding: 16px;
-}
-
-section.active {
-  display: block;
-}
-
-/* ===== Form ===== */
-input, textarea, select {
-  width: 100%;
-  padding: 14px;
-  margin: 6px 0;
-  font-size: 18px;
-}
-
-button {
-  padding: 14px;
-  font-size: 18px;
-  margin-top: 8px;
-}
-
-#successMsg {
-  display: none;
-  color: green;
-  font-size: 18px;
-  margin-top: 8px;
-}
-
-/* ===== Cards Grid ===== */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-}
-
-/* ===== Card Core ===== */
-.card {
-  width: 100%;
-  aspect-ratio: 1 / 1;        /* 🔒 Khóa kích thước */
-  perspective: 1000px;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-}
-
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* ===== Card Faces ===== */
-.card-face {
-  position: absolute;
-  inset: 0;                  /* 🔒 Không cho giãn */
-  backface-visibility: hidden;
-  border-radius: 20px;
-  overflow: hidden;          /* 🔒 Chặn phình */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  box-sizing: border-box;
-}
-
-/* ===== Front ===== */
-.card-front {
-  background: #ffffff;
-}
-
-.card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;       /* 🔑 Không làm phình */
-  border-radius: 16px;       /* ✅ Bo góc mềm mại */
-}
-
-/* ===== Back ===== */
-.card-back {
-  transform: rotateY(180deg);
-  text-align: center;
-  color: #222;
-  overflow-y: auto;
-}
-
-.word {
-  font-size: 26px;
+  cursor: pointer;
+  color: white;
   font-weight: bold;
 }
 
-.example {
-  margin-top: 8px;
-  font-size: 18px;
+.tabs button.active {
+  background: #ff5fa8;
 }
 
-/* ===== Highlight ===== */
-mark {
-  background: #ffeb3b;
-  padding: 2px 4px;
-  border-radius: 4px;
+.tab-content {
+  padding: 20px;
+  font-size: 22px; /* chữ nội dung to hơn */
 }
 
-/* ===== Tablet-friendly Star ===== */
-.star {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-.star:active {
-  transform: scale(0.9);
-}
-
-.star.marked {
-  background: #ffd700;
-}
-
-/* ===== Custom Radio – FIX trạng thái được chọn ===== */
-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  margin: 10px 0;
-  cursor: pointer;
-}
-
-/* Ẩn radio mặc định */
-label input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid #4a90e2;
+/* Upload Section */
+.card {
   background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 22px; /* chữ trong card to */
+}
+
+/* Flip card */
+.flip-container {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.flip-card {
+  width: 100%;
+  height: 500px;
   position: relative;
-  flex-shrink: 0;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  opacity: 1;
 }
 
-/* khi được chọn – vẽ chấm tròn */
-label input[type="radio"]:checked::after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  background: #4a90e2;
-  border-radius: 50%;
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-side {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* hiệu ứng tap cho tablet */
-label input[type="radio"]:active,
-label:active input[type="radio"] {
-  transform: scale(0.9);
-}
-
-/* ===== Action buttons row ===== */
-.action-row {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  backface-visibility: hidden;
   display: flex;
-  justify-content: space-between; /* 🔑 tách 2 đầu */
+  justify-content: center;
   align-items: center;
-  margin-top: 12px;
-  gap: 12px;
+  font-size: 28px;
+  padding: 0;
 }
 
-/* nút nguy hiểm */
-button.danger {
-  background: #e74c3c;
+.front {
+  background: #ffd6ec;
+}
+
+.front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.back {
+  background: #fff;
+  transform: rotateY(180deg);
+  text-align: center;
+  font-size: 32px;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.back .word {
+  font-size: 56px; /* từ to hơn */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.back .sentence {
+  font-size: 36px; /* câu ví dụ to hơn */
+}
+
+/* Fade-in effect */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
+}
+
+/* Alphabet buttons */
+.alpha-btn {
+  font-size: 26px; /* chữ cái to hơn */
+  padding: 14px 18px;
+  margin: 6px;
+  border-radius: 50%;
+  border: none;
+  background: #ff9ac4;
   color: white;
-}
-/* ===== Button style ===== */
-button {
-  border-radius: 10px;      /* bo góc mềm, thân thiện trẻ em */
-  padding: 10px 16px;
+  cursor: pointer;
 }
 
-/* ===== Dropdown / Select ===== */
-select {
-  border-radius: 10px;
-  padding: 8px 12px;
-}
-
-/* Optional: input text nếu có */
-input[type="text"],
-input[type="number"] {
-  border-radius: 10px;
-  padding: 8px 12px;
-}
-
-/* Hover & focus nhẹ */
-button:hover {
-  opacity: 0.95;
-}
-
-button:focus,
-select:focus,
-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-}
-.import-note {
-  background: #ffffff;
-  border-left: 5px solid #4a90e2;
-  padding: 12px 14px;
-  margin-top: 10px;
-  font-size: 16px;
-  border-radius: 10px;
-}
-
-.import-note code {
+/* Nút tiếp theo */
+.next-btn {
   display: block;
-  background: #f0f0f0;
-  padding: 8px;
-  border-radius: 8px;
-  margin: 6px 0;
-  font-family: monospace;
-  font-size: 15px;
-}
-
-.import-note ul {
-  padding-left: 18px;
-  margin: 6px 0;
-}
-
-.import-note li {
-  margin-bottom: 4px;
-}
-/* ===== Primary buttons ===== */
-button.primary {
-  background: #4a90e2;        /* xanh dịu – hành động chính */
-  color: white;
+  margin: 60px auto 0 auto; /* cách khung lớn hơn */
+  font-size: 28px;
+  padding: 18px 40px;
+  border-radius: 12px;
   border: none;
-}
-
-button.primary:active {
-  transform: scale(0.96);
-}
-
-button.primary:hover {
-  background: #357abd;
-}
-
-/* Nút học – xanh lá tạo cảm giác tích cực */
-button.learn {
-  background: #2ecc71;        /* xanh lá thân thiện */
+  background: #ff5fa8;
   color: white;
-  border: none;
 }
-
-button.learn:hover {
-  background: #27ae60;
+.front.default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 120px; /* chữ cái lớn */
+  font-weight: bold;
+  color: white;
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
 }
 
 </style>
+
+
+
 </head>
 
 <body>
 
-<!-- ===== Tabs ===== -->
 <div class="tabs">
-  <button class="active" onclick="showTab(0)">➕ Nhập từ</button>
-  <button onclick="showTab(1)">🎴 Học từ</button>
+  <button id="tab1btn" class="active" onclick="showTab(1)">Chuẩn bị từ vựng</button>
+  <button id="tab2btn" onclick="showTab(2)">Bắt đầu học</button>
 </div>
 
-<!-- ===== Add Word ===== -->
-<section class="active">
-  <h2>Thêm từ mới</h2>
+<!-- TAB 1 -->
+<div id="tab1" class="tab-content">
+  <div class="card">
+    <p><b>Upload file từ vựng (.txt)</b></p>
+    <p>Format: <i>Từ, Câu ví dụ</i></p>
 
-  <input id="word" placeholder="Từ vựng">
-  <textarea id="example" placeholder="Mẫu câu (không bắt buộc)"></textarea>
-  <input id="image" placeholder="Link hình ảnh">
+    <input type="file" id="fileInput" accept=".txt" onchange="handleFile()">
+    <p id="status"></p>
+  </div>
+</div>
 
-  <select id="folderSelect"></select>
-  <input id="newFolder" placeholder="Hoặc tạo thư mục mới">
+<!-- TAB 2 -->
+<div id="tab2" class="tab-content" style="display:none">
 
-  <div class="action-row">
-  <button onclick="addWord()" class="primary">➕ Thêm</button>
-  <div id="successMsg">✅ Thêm từ thành công</div>
+  <p><b>Chọn chữ cái để học</b></p>
+  <div id="alphabet"></div>
 
-    <button onclick="clearAllMarks()" class="danger">
-    ❌ Xóa toàn bộ đánh dấu từ
-    </button>
-
-    <button onclick="clearAllWords()" class="danger">
-    🗑️ Xóa toàn bộ từ vựng
-  </button>
+  <div class="flip-container">
+    <div id="flipCard" class="flip-card" onclick="flip()">
+      <div class="flip-side front" id="frontSide">
+        <span>Chọn chữ cái trước nhé</span>
+      </div>
+      <div class="flip-side back" id="backSide">
+      </div>
+    </div>
   </div>
 
-
-
-  <h3>Import từ file text</h3>
-  <div class="import-note">
-  <strong>📄 Định dạng file text:</strong><br>
-  Mỗi dòng là <b>1 từ vựng</b>, các phần được phân tách bằng dấu <b>:</b><br><br>
-
-  <code>Từ : Phân loại : Mẫu câu : Link hình</code><br><br>
-
-  <strong>Quy tắc:</strong>
-  <ul>
-    <li>Phân loại và Mẫu câu <b>không bắt buộc</b></li>
-    <li>Nếu bỏ trống, vẫn phải giữ dấu <b>:</b></li>
-    <li>Không có phân loại → tự động vào <b>Chưa phân loại</b></li>
-  </ul>
-
-  <strong>Ví dụ:</strong><br>
-  <code>
-    Apple::I eat an apple:https://example.com/apple.png<br>
-    Dog:Animals:The dog is running:https://example.com/dog.jpg<br>
-    Cat:::https://example.com/cat.png
-  </code>
+  <button class="next-btn" onclick="nextWord()">Tiếp theo ➜</button>
 </div>
 
-  <input type="file" accept=".txt" onchange="importFile(this)">
-</section>
-
-<!-- ===== Learn ===== -->
-<section>
-  <h2>Học từ</h2>
-  <select id="folderFilter"></select>
-<label>
-  <input type="radio" name="markedMode" id="onlyMarked">
-  Chỉ học từ đã đánh dấu
-</label>
-
-<label>
-  <input type="radio" name="markedMode" id="includeMarked">
-  Bao gồm từ đã đánh dấu
-</label>
-
-
-<button onclick="render()" class="learn">▶️ Bắt đầu học</button>
-
-  <div class="cards" id="cards"></div>
-</section>
-
 <script>
-/* ===== Data ===== */
-const COLORS = ["#FFB6C1","#FFD966","#A8DADC","#B5EAD7","#CDB4DB","#FFDAC1"];
-const DEFAULT_FOLDER = "Chưa phân loại";
+let vocabulary = {};
+let currentList = [];
+let index = 0;
 
-let data = JSON.parse(localStorage.getItem("vocab") || "[]");
+let femaleVoice = null;
 
-const folderSelect = document.getElementById("folderSelect");
-const folderFilter = document.getElementById("folderFilter");
-const includeMarkedRadio = document.getElementById("includeMarked");
-const onlyMarkedRadio = document.getElementById("onlyMarked");
 
-/* ===== Tabs ===== */
-function showTab(i){
-  document.querySelectorAll("section").forEach((s,idx)=>s.classList.toggle("active",idx===i));
-  document.querySelectorAll(".tabs button").forEach((b,idx)=>b.classList.toggle("active",idx===i));
-  loadFolders();
+async function loadVocabulary() {
+    try {
+        const response = await fetch("words.txt");
+        const text = await response.text();
+        parseVocabulary(text);
+        console.log("Vocabulary loaded");
+    } catch (e) {
+        alert("Cannot find words.txt in the same folder.");
+        console.error(e);
+    }
 }
 
-/* ===== Form ===== */
-function clearForm(){
-  word.value = "";
-  example.value = "";
-  image.value = "";
-  newFolder.value = "";
-  folderSelect.value = "";
-}
+// parse txt content
+function parseVocabulary(text) {
+    vocabulary = {};
 
-function showSuccess(){
-  successMsg.style.display = "block";
-  setTimeout(()=>successMsg.style.display="none",2000);
-}
+    const lines = text.split(/\r?\n/).filter(l => l.trim() !== "");
 
-/* ===== Add Word ===== */
-function addWord(obj){
-  const wordVal = obj?.word || word.value.trim();
-  const exampleVal = obj?.example || example.value.trim();
-  const imageVal = obj?.image || image.value.trim();
-  const folder =
-    obj?.folder ||
-    newFolder.value.trim() ||
-    folderSelect.value ||
-    DEFAULT_FOLDER;
+    lines.forEach(line => {
+        const parts = line.split(",");
+        if (parts.length >= 2) {
+            const word = parts[0].trim();
+            const sentence = parts.slice(1).join(",").trim();
+            const firstLetter = word[0].toUpperCase();
 
-  if(!wordVal || !imageVal) return;
+            if (!vocabulary[firstLetter]) {
+                vocabulary[firstLetter] = [];
+            }
 
-  data.push({
-    word: wordVal,
-    example: exampleVal,
-    image: imageVal,
-    folder,
-    color: COLORS[Math.floor(Math.random()*COLORS.length)],
-    marked: false
-  });
-
-  save();
-  clearForm();
-  showSuccess();
-}
-
-/* ===== Import ===== */
-function importFile(input){
-  const reader = new FileReader();
-  reader.onload = () => {
-    reader.result.split("\n").forEach(line=>{
-      if(!line.trim()) return;
-      const p = line.split(":");
-      addWord({
-        word: p[0]?.trim(),
-        folder: p[1]?.trim(),
-        example: p[2]?.trim(),
-        image: p[3]?.trim()
-      });
+            vocabulary[firstLetter].push({
+                word,
+                sentence
+            });
+        }
     });
-  };
-  reader.readAsText(input.files[0]);
 }
 
-/* ===== Folder ===== */
-function loadFolders(){
-  const folders = [...new Set(data.map(x=>x.folder || DEFAULT_FOLDER))].sort();
-  folderSelect.innerHTML = `<option value="">${DEFAULT_FOLDER}</option>`;
-  folderFilter.innerHTML = `<option value="">-- Tất cả --</option>`;
-  folders.forEach(f=>{
-    folderSelect.innerHTML += `<option>${f}</option>`;
-    folderFilter.innerHTML += `<option>${f}</option>`;
+// call on startup
+window.onload = loadVocabulary;
+
+// Hàm tìm giọng nữ US English
+function findFemaleVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  femaleVoice = voices.find(v => 
+    v.lang.startsWith('en') && v.name.toLowerCase().includes('female')
+  );
+  if(femaleVoice) console.log("Đã load giọng nữ:", femaleVoice.name);
+}
+
+// Gọi lần đầu
+findFemaleVoice();
+
+// Nghe sự kiện voices changed
+window.speechSynthesis.onvoiceschanged = () => {
+  findFemaleVoice();
+};
+
+
+function showTab(n){
+  document.getElementById("tab1").style.display = n===1 ? "block":"none";
+  document.getElementById("tab2").style.display = n===2 ? "block":"none";
+  document.getElementById("tab1btn").classList.toggle("active", n===1);
+  document.getElementById("tab2btn").classList.toggle("active", n===2);
+}
+
+function handleFile(){
+  const file = document.getElementById("fileInput").files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const lines = e.target.result.split(/\r?\n/);
+
+    vocabulary = {};
+
+    lines.forEach(line=>{
+      if(!line.trim()) return;
+      const parts = line.split(",");
+      if(parts.length<2) return;
+
+      const word = parts[0].trim();
+      const sentence = parts.slice(1).join(",").trim();
+      const first = word[0].toUpperCase();
+
+      if(!vocabulary[first]) vocabulary[first]=[];
+      vocabulary[first].push({word, sentence});
+    });
+
+    document.getElementById("status").innerText = "Đã tải xong! Bạn có thể chuyển sang tab 'Bắt đầu học'";
+    renderAlphabet();
+  };
+
+  reader.readAsText(file);
+}
+
+function renderAlphabet(){
+  const alphaDiv = document.getElementById("alphabet");
+  alphaDiv.innerHTML = "";
+
+  Object.keys(vocabulary).sort().forEach(letter=>{
+    const btn = document.createElement("button");
+    btn.className = "alpha-btn";
+    btn.innerText = letter;
+    btn.onclick = ()=>startLearning(letter);
+    alphaDiv.appendChild(btn);
   });
 }
 
-/* ===== Highlight ===== */
-function highlight(sentence, word){
-  if(!sentence) return "";
-  return sentence.replace(new RegExp(`(${word})`, "gi"), "<mark>$1</mark>");
+function startLearning(letter){
+  currentList = vocabulary[letter] || [];
+  index = 0;
+  showWord();
 }
 
-/* ===== Render ===== */
-function render(){
-  cards.innerHTML = "";
-
-  data.filter(x => {
-  // 1️⃣ Ưu tiên: chỉ học từ đã đánh dấu
-  if (onlyMarkedRadio.checked) {
-    return x.marked;
+function showWord() {
+  if(currentList.length === 0){
+    document.getElementById("frontSide").innerHTML = "Không có từ nào";
+    document.getElementById("backSide").innerHTML = "";
+    return;
   }
 
-  // 2️⃣ Có chọn thư mục
-  if (folderFilter.value) {
-    // thuộc thư mục đang học
-    if (x.folder === folderFilter.value) return true;
+  const item = currentList[index];
+  const imgPath = "image/" + item.word.toLowerCase() + ".jpg";
 
-    // hoặc là từ đã đánh dấu & cho phép bao gồm
-    if (includeMarkedRadio.checked && x.marked) return true;
+  const front = document.getElementById("frontSide");
+  const back = document.getElementById("backSide");
+  const card = document.getElementById("flipCard");
 
-    return false;
-  }
+  // Xóa trạng thái lật
+  card.classList.remove("flipped");
 
-  // 3️⃣ Không chọn gì → hiện tất cả
-  return true;
-}).forEach(item=>{
-    const card = document.createElement("div");
-    card.className = "card";
+  // Reset fade
+  card.style.opacity = 0;
 
-    card.innerHTML = `
-      <div class="card-inner">
-        <div class="card-face card-front">
-          <img src="${item.image}">
-        </div>
-        <div class="card-face card-back" style="background:${item.color}">
-          <div class="star ${item.marked ? "marked" : ""}">${item.marked ? "⭐" : "☆"}</div>
-          <div class="word">${item.word}</div>
-          <div class="example">${highlight(item.example,item.word)}</div>
-        </div>
-      </div>
+  setTimeout(() => {
+    // Kiểm tra file hình tồn tại
+    const img = new Image();
+    img.src = imgPath;
+    img.onload = function() {
+      // Hình tồn tại
+      front.innerHTML = `<img src="${imgPath}" alt="${item.word}">`;
+      front.classList.remove("default");
+    }
+    img.onerror = function() {
+      // Hình không tồn tại → tạo default
+      const bgColor = randomColor();
+      const firstLetter = item.word.charAt(0).toUpperCase();
+      front.innerHTML = `<div class="default">${firstLetter}</div>`;
+      front.style.background = bgColor;
+      front.classList.add("default");
+    }
+
+    // Mặt sau vẫn hiển thị từ và câu
+    back.innerHTML = `
+      <div class="word">${item.word}</div>
+      <div class="sentence">${item.sentence}</div>
     `;
 
-    const inner = card.querySelector(".card-inner");
-    const star = card.querySelector(".star");
+    card.classList.add("fade-in");
+    card.style.opacity = 1;
+  }, 100);
 
-    inner.addEventListener("pointerup", e=>{
-      if(e.target.closest(".star")) return;
-      card.classList.toggle("flipped");
-    });
-
-    star.addEventListener("pointerup", e=>{
-      e.stopPropagation();
-      item.marked = !item.marked;
-      save();
-      render();
-    });
-
-    cards.appendChild(card);
-  });
+  // Xóa class fade-in sau animation
+  setTimeout(()=>{ card.classList.remove("fade-in"); }, 700);
 }
 
-function clearAllMarks() {
-  const confirmed = confirm(
-    "⚠️ Bạn có chắc chắn muốn xóa TẤT CẢ các từ đã đánh dấu?\nHành động này không thể hoàn tác."
-  );
+function flip(){
+  const card = document.getElementById("flipCard");
+  card.classList.toggle("flipped");
 
-  if (!confirmed) return;
-
-  let changed = false;
-
-  data.forEach(item => {
-    if (item.marked) {
-      item.marked = false;
-      changed = true;
-    }
-  });
-
-  if (changed) {
-    save();
-    alert("✅ Đã xóa toàn bộ đánh dấu từ");
-  } else {
-    alert("ℹ️ Không có từ nào đang được đánh dấu");
+  // Nếu vừa lật sang mặt sau, đọc câu ví dụ
+  if(card.classList.contains("flipped")) {
+    const backSide = document.getElementById("backSide");
+    const sentenceDiv = backSide.querySelector(".sentence");
+    if(sentenceDiv) speak(sentenceDiv.innerText);
   }
 }
 
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
 
-/* ===== Save ===== */
-function save(){
-  localStorage.setItem("vocab",JSON.stringify(data));
-  loadFolders();
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.9;
+  utterance.pitch = 1.1;
+
+  if(femaleVoice) {
+    utterance.voice = femaleVoice; // dùng giọng nữ đã load
+  }
+
+  window.speechSynthesis.speak(utterance);
 }
-function clearAllWords() {
-  if (!confirm("⚠️ Xóa TOÀN BỘ từ vựng?")) return;
-  if (!confirm("❗ Bạn chắc chắn 100%? Dữ liệu sẽ mất vĩnh viễn.")) return;
 
-  data = [];
-  save();
-  cards.innerHTML = "";
-
-  alert("✅ Đã xóa toàn bộ từ vựng");
+function randomColor() {
+  const colors = [
+    "#FFB6C1", "#FF69B4", "#FF1493", "#DB7093", "#FFC0CB",
+    "#FFA07A", "#FF7F50", "#FFD700", "#90EE90", "#87CEFA"
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
 }
 
-
-loadFolders();
+function nextWord(){
+  if(currentList.length===0) return;
+  index = (index+1) % currentList.length;
+  showWord();
+}
 </script>
-
 </body>
 </html>

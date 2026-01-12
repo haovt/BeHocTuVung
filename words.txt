@@ -1,0 +1,150 @@
+Apple,I have an apple.
+Ant,The ant is small.
+Arm,I lift my arm.
+Air,The air is fresh.
+Animal,I see an animal.
+Axe,He uses an axe.
+Alligator,The alligator is big.
+Astronaut,The astronaut flies.
+Apron,I wear an apron.
+Arrow,The arrow is red.
+Ball,I play with a ball.
+Bat,The bat flies at night.
+Bird,The bird sings.
+Book,I read a book.
+Box,The box is blue.
+Bag,I carry my bag.
+Banana,I eat a banana.
+Boat,The boat floats.
+Bread,I like bread.
+Butterfly,The butterfly is colorful.
+Cat,The cat is cute.
+Car,I see a car.
+Cup,The cup is full.
+Cake,I like cake.
+Cow,The cow is big.
+Chair,I sit on a chair.
+Candle,The candle is lit.
+Camera,I take a camera.
+Cloud,The cloud is white.
+Clock,The clock is fast.
+Dog,The dog barks.
+Duck,The duck swims.
+Door,Open the door.
+Drum,I play the drum.
+Doll,The doll is pretty.
+Desk,I sit at a desk.
+Diamond,The diamond is shiny.
+Dolphin,The dolphin jumps.
+Dragon,The dragon flies.
+Donkey,The donkey walks.
+Elephant,The elephant is big.
+Egg,I eat an egg.
+Ear,My ear hurts.
+Eye,I see with my eye.
+Engine,The engine runs.
+Earth,We live on Earth.
+Envelope,I write an envelope.
+Exit,The exit is there.
+Eagle,The eagle flies high.
+Eraser,I use an eraser.
+Fish,The fish swims.
+Frog,The frog jumps.
+Fan,The fan is on.
+Flower,The flower is red.
+Fire,The fire is hot.
+Fox,The fox is clever.
+Flag,I see the flag.
+Fruit,I eat fruit.
+Feather,The feather is soft.
+Farm,The farm has animals.
+Goat,The goat is white.
+Girl,The girl smiles.
+Grapes,I eat grapes.
+Guitar,I play guitar.
+Grass,The grass is green.
+Gold,The gold is shiny.
+Garden,I water the garden.
+Globe,The globe spins.
+Gate,Open the gate.
+Goose,The goose swims.
+Hat,I wear a hat.
+Horse,The horse runs.
+Hand,I raise my hand.
+House,The house is big.
+Hen,The hen lays eggs.
+Heart,I love with my heart.
+Honey,I eat honey.
+Hill,The hill is high.
+Hamburger,I eat a hamburger.
+Helicopter,The helicopter flies.
+Ice,The ice is cold.
+Insect,The insect crawls.
+Island,The island is small.
+Igloo,The igloo is white.
+Iron,I iron my shirt.
+Ink,The ink is blue.
+Invitation,I send an invitation.
+Idea,I have an idea.
+Iguana,The iguana is green.
+Ivy,The ivy grows.
+Juice,I drink juice.
+Jam,I like jam.
+Jump,I jump high.
+Jacket,I wear a jacket.
+Jelly,The jelly is sweet.
+Jeep,The jeep is big.
+Jar,The jar is full.
+Jaguar,The jaguar runs fast.
+Joke,I tell a joke.
+Jet,The jet flies.
+Kite,The kite flies.
+King,The king is wise.
+Key,I have a key.
+Kangaroo,The kangaroo jumps.
+Kitchen,The kitchen is clean.
+Koala,The koala sleeps.
+Knife,The knife is sharp.
+Kitten,The kitten plays.
+Knock,I knock the door.
+Knowledge,I gain knowledge.
+Lion,The lion roars.
+Lamp,The lamp is bright.
+Leaf,The leaf is green.
+Lemon,I eat a lemon.
+Ladder,I climb the ladder.
+Lake,The lake is blue.
+Ladybug,The ladybug crawls.
+Lunch,I eat lunch.
+Lollipop,I like lollipop.
+Light,The light is on.
+Monkey,The monkey swings.
+Moon,The moon is bright.
+Milk,I drink milk.
+Mouse,The mouse runs.
+Mountain,The mountain is tall.
+Mango,I eat mango.
+Map,I see the map.
+Mirror,The mirror is clean.
+Magnet,The magnet attracts.
+Music,I like music.
+Nest,The nest is small.
+Nose,My nose is red.
+Net,I catch fish with a net.
+Night,The night is dark.
+Nurse,The nurse helps.
+Nap,I take a nap.
+Notebook,I write in notebook.
+Number,I count the number.
+Necklace,I wear a necklace.
+Needle,The needle is sharp.
+Orange,I eat an orange.
+Owl,The owl hoots.
+Ocean,The ocean is big.
+Octopus,The octopus swims.
+Oil,The oil is hot.
+Onion,I chop an onion.
+Oven,The oven is hot.
+Orbit,The moon orbits Earth.
+Olive,I eat an olive.
+Orchestra,The orchestra plays.
