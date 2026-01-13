@@ -279,57 +279,50 @@ function startLearning(letter){
   showWord();
 }
 
+const imageCache = {};
+
 function showWord() {
-  if(currentList.length === 0){
-    document.getElementById("frontSide").innerHTML = "Không có từ nào";
-    document.getElementById("backSide").innerHTML = "";
-    return;
-  }
+  if (currentList.length === 0) return;
 
   const item = currentList[index];
-  const imgPath = "image/" + item.word.toLowerCase() + ".jpg";
-
   const front = document.getElementById("frontSide");
   const back = document.getElementById("backSide");
   const card = document.getElementById("flipCard");
 
-  // Xóa trạng thái lật
   card.classList.remove("flipped");
 
-  // Reset fade
-  card.style.opacity = 0;
+  const imgPath = "image/" + item.word.toLowerCase() + ".jpg";
 
-  setTimeout(() => {
-    // Kiểm tra file hình tồn tại
+  // If already cached → show immediately
+  if (imageCache[imgPath] === true) {
+    front.innerHTML = `<img src="${imgPath}" alt="${item.word}">`;
+    front.style.background = "none";
+  }
+  else {
     const img = new Image();
     img.src = imgPath;
-    img.onload = function() {
-      // Hình tồn tại
+
+    img.onload = function () {
+      imageCache[imgPath] = true;   // cache result
       front.innerHTML = `<img src="${imgPath}" alt="${item.word}">`;
-      front.classList.remove("default");
-    }
-    img.onerror = function() {
-      // Hình không tồn tại → tạo default
+      front.style.background = "none";
+    };
+
+    img.onerror = function () {
+      imageCache[imgPath] = false;  // cache failure
       const bgColor = randomColor();
-      const firstLetter = item.word.charAt(0).toUpperCase();
+      const firstLetter = item.word[0].toUpperCase();
       front.innerHTML = `<div class="default">${firstLetter}</div>`;
       front.style.background = bgColor;
-      front.classList.add("default");
-    }
+    };
+  }
 
-    // Mặt sau vẫn hiển thị từ và câu
-    back.innerHTML = `
-      <div class="word">${item.word}</div>
-      <div class="sentence">${item.sentence}</div>
-    `;
-
-    card.classList.add("fade-in");
-    card.style.opacity = 1;
-  }, 100);
-
-  // Xóa class fade-in sau animation
-  setTimeout(()=>{ card.classList.remove("fade-in"); }, 700);
+  back.innerHTML = `
+    <div class="word">${item.word}</div>
+    <div class="sentence">${item.sentence}</div>
+  `;
 }
+
 
 function flip(){
   const card = document.getElementById("flipCard");
