@@ -148,3 +148,97 @@ Oven,The oven is hot.
 Orbit,The moon orbits Earth.
 Olive,I eat an olive.
 Orchestra,The orchestra plays.
+Pig,The pig is in the mud.
+Puppy,The puppy is very cute.
+Pink,I have a pink balloon.
+Pizza,We eat pizza for lunch.
+Park,We play at the park.
+Play,I like to play with my friends.
+Plane,The plane flies in the sky.
+Pillow,I sleep on a soft pillow.
+Paint,I paint a big red star.
+Pen,I write with a pen.
+Queen,The queen wears a crown.
+Quack,The duck says quack.
+Quick,The cat is very quick.
+Quiet,Please be quiet in class.
+Quarter,I have a shiny quarter.
+Question,I ask a big question.
+Quilt,I sleep under a warm quilt.
+Quit,I do not quit my game.
+Quail,The quail runs fast.
+Queue,We stand in a queue.
+Rabbit,The rabbit hops fast.
+Rainbow,I see a rainbow in the sky.
+Red,I like the red apple.
+Run,I run very fast.
+Ring,I wear a gold ring.
+Robot,The robot can walk.
+Rock,The rock is hard.
+Road,We walk on the road.
+Rain,The rain is falling.
+Rice,I eat rice for dinner.
+Sun,The sun is bright.
+Star,I see a star at night.
+Smile,I smile at my mom.
+Sit,Please sit on the chair.
+Sock,I wear a blue sock.
+Sand,We play with sand.
+Soup,The soup is warm.
+Snow,The snow is white.
+School,I go to school.
+Swing,I like the swing.
+Tiger,The tiger is big.
+Toy,I have a new toy.
+Tree,The tree is tall.
+Train,The train goes fast.
+Table,The cup is on the table.
+Tea,Dad drinks hot tea.
+Tomato,The tomato is red.
+Turtle,The turtle is slow.
+Ten,I can count to ten.
+Umbrella,I use an umbrella in rain.
+Up,The ball goes up.
+Under,The cat is under the bed.
+Uniform,I wear my school uniform.
+Unicorn,I see a unicorn in my book.
+Use,I use a pencil.
+Ugly,The bug looks ugly.
+Until,We wait until lunch.
+Van,The van is blue.
+Violin,She plays the violin.
+Vet,The vet helps my dog.
+Vase,The vase has flowers.
+Vote,We vote for class leader.
+Visit,We visit grandpa today.
+Voice,My voice is loud.
+Video,We watch a video.
+Vegetable,I eat a green vegetable.
+Water,I drink water.
+Window,The window is open.
+Wind,The wind is strong.
+Whale,The whale is huge.
+White,The paper is white.
+Wolf,The wolf runs fast.
+Wish,I make a wish.
+Walk,We walk to school.
+Wall,The ball hits the wall.
+Watch,I wear a watch.
+Xylophone,I play the xylophone.
+Xmas,We sing Xmas songs.
+Yellow,The sun is yellow.
+Yam,I eat a yam.
+Yawn,I yawn when sleepy.
+Yes,I say yes to cake.
+Yogurt,I like sweet yogurt.
+Yo-yo,I play with a yo-yo.
+Year,This year is fun.
+Young,The puppy is young.
+Zoo,We go to the zoo.
+Zebra,The zebra has stripes.
+Zip,I zip my jacket.
+Zero,Zero means nothing.
+Zigzag,The line is zigzag.
+Zoom,The car can zoom.
+Zipper,Pull the zipper up.
+Zombie,A zombie is in my game.
