@@ -147,7 +147,6 @@ Onion,I chop an onion.
 Oven,The oven is hot.
 Orbit,The moon orbits Earth.
 Olive,I eat an olive.
-Orchestra,The orchestra plays.
 Pig,The pig is in the mud.
 Puppy,The puppy is very cute.
 Pink,I have a pink balloon.
@@ -164,7 +163,6 @@ Quick,The cat is very quick.
 Quiet,Please be quiet in class.
 Quarter,I have a shiny quarter.
 Question,I ask a big question.
-Quilt,I sleep under a warm quilt.
 Quit,I do not quit my game.
 Quail,The quail runs fast.
 Queue,We stand in a queue.
@@ -227,7 +225,6 @@ Watch,I wear a watch.
 Xylophone,I play the xylophone.
 Xmas,We sing Xmas songs.
 Yellow,The sun is yellow.
-Yam,I eat a yam.
 Yawn,I yawn when sleepy.
 Yes,I say yes to cake.
 Yogurt,I like sweet yogurt.
@@ -236,9 +233,7 @@ Year,This year is fun.
 Young,The puppy is young.
 Zoo,We go to the zoo.
 Zebra,The zebra has stripes.
-Zip,I zip my jacket.
 Zero,Zero means nothing.
 Zigzag,The line is zigzag.
-Zoom,The car can zoom.
 Zipper,Pull the zipper up.
 Zombie,A zombie is in my game.
